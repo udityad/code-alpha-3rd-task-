@@ -1,0 +1,30 @@
+import nltk
+from nltk.chat.util import Chat, reflections
+
+# Define patterns and responses for the chatbot
+patterns_responses = [
+    (r'hi|hello|hey', ['Hello!', 'Hi there!', 'Hey!']),
+    (r'how are you?', ['I am fine, thank you!', 'I am good, how can I help you?']),
+    (r'what is your name?', ['I am a chatbot created by OpenAI.', 'I don\'t have a name, but you can call me Chatbot.']),
+    (r'(.*) (weather|temperature)', ['I\'m not sure about the weather. Try checking a weather app.']),
+    (r'(.*)', ['I\'m sorry, I didn\'t understand that.']),
+]
+
+# Create a chatbot instance
+chatbot = Chat(patterns_responses, reflections)
+
+def chatbot_response(user_input):
+    return chatbot.respond(user_input)
+
+def main():
+    print("Hello! I am a chatbot. Type 'quit' to exit.")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == 'quit':
+            print("Chatbot: Goodbye!")
+            break
+        response = chatbot_response(user_input)
+        print(f"Chatbot: {response}")
+
+if __name__ == "__main__":
+    main()
